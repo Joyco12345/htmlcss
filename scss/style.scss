@@ -1,0 +1,425 @@
+@import "variables";
+@import "mixins";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $ink;
+  background: $bg;
+}
+
+.wrap {
+  max-width: sp-width($n: 4);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.header {
+  background: $accent;
+  color: $white;
+  position: relative;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  gap: 12px;
+}
+
+.logo {
+  color: $white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hide-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.burger {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.burger-lines {
+  position: relative;
+  width: 22px;
+  height: 16px;
+
+  span {
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: $white;
+    transition: top 0.2s;
+  }
+
+  @for $i from 1 through 3 {
+    span:nth-child(#{$i}) {
+      top: ($i - 1) * 7px;
+    }
+  }
+}
+
+.menu-check:checked ~ .burger .burger-lines {
+  span:nth-child(1) {
+    top: 7px;
+    @include transform($property: rotate(45deg));
+  }
+
+  span:nth-child(2) {
+    @include transform($property: scaleX(0));
+  }
+
+  span:nth-child(3) {
+    top: 7px;
+    @include transform($property: rotate(-45deg));
+  }
+}
+
+h1 {
+  margin: 18px 0 10px;
+  font-size: 30px;
+}
+
+h2 {
+  margin: 4px 0 12px;
+  font-size: 20px;
+  padding-left: 10px;
+  border-left: 4px solid $accent;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.intro {
+  padding: 8px 0 4px;
+}
+
+.intro-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.when {
+  flex-shrink: 0;
+  width: 110px;
+  padding-top: 22px;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.when-time {
+  margin-top: 8px;
+  font-weight: bold;
+  color: $accent;
+}
+
+.clock {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border: 3px solid $accent;
+  border-radius: 50%;
+  background: $white;
+  position: relative;
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 2px;
+  height: 28px;
+  margin-left: -1px;
+  background: $accent;
+  transform-origin: center bottom;
+  animation: sway 2.4s ease-in-out infinite;
+}
+
+.pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: $accent;
+  border-radius: 50%;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    @include transform($property: rotate(-32deg));
+  }
+
+  50% {
+    @include transform($property: rotate(32deg));
+  }
+}
+
+.sheet {
+  background: $white;
+  border: 1px solid $line;
+  padding: 16px;
+  margin: 14px auto;
+}
+
+.topics {
+  margin: 0 0 18px;
+  padding-left: 1.2em;
+
+  li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+
+    &::marker {
+      color: $accent;
+      font-weight: bold;
+    }
+  }
+}
+
+.tabs-btns {
+  display: flex;
+  gap: 8px;
+
+  label {
+    border: 1px solid $line;
+    background: $bg;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+}
+
+.panel {
+  display: none;
+  border: 1px solid $line;
+  border-top: 4px solid $accent;
+  padding: 12px;
+  margin-top: 8px;
+
+  p {
+    margin: 0;
+  }
+}
+
+#day-tue:checked ~ #panel-tue,
+#day-thu:checked ~ #panel-thu {
+  display: block;
+}
+
+#day-tue:checked ~ .tabs-btns label[for="day-tue"],
+#day-thu:checked ~ .tabs-btns label[for="day-thu"] {
+  background: $accent;
+  color: $white;
+  border-color: $accent;
+}
+
+details {
+  border: 1px solid $line;
+  border-left: 4px solid $accent;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+
+  p {
+    margin: 8px 0 0;
+  }
+}
+
+summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid $accent;
+  border-bottom: 2px solid $accent;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  @include transform($property: rotate(45deg));
+}
+
+details[open] .arrow {
+  @include transform($property: rotate(225deg));
+}
+
+%button-shared {
+  background: $accent;
+  color: $white;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.btn {
+  @extend %button-shared;
+  display: inline-block;
+
+  &:active {
+    @include transform($property: scale(0.97));
+  }
+}
+
+.form {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 4px;
+    padding: 6px;
+    border: 1px solid $line;
+    font: inherit;
+    background: $white;
+
+    &:focus {
+      outline: 1px solid $accent;
+    }
+  }
+
+  button {
+    @extend %button-shared;
+    margin-top: 12px;
+    border: 0;
+    font: inherit;
+
+    &:active {
+      @include transform($property: scale(0.97));
+    }
+  }
+}
+
+.join-check:checked ~ .form {
+  max-height: 420px;
+  margin-top: 12px;
+}
+
+.form-ok {
+  margin-top: 12px;
+}
+
+.footer {
+  background: $accent;
+  color: $white;
+  padding: 14px 0;
+  margin-top: 18px;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (max-width: $narrow) {
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 16px 14px;
+    background: $white;
+    border-bottom: 1px solid $line;
+
+    a {
+      color: $accent;
+    }
+  }
+
+  .menu-check:checked ~ .nav {
+    display: flex;
+  }
+
+  .intro-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .when {
+    width: auto;
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .clock {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hand {
+    top: 6px;
+    height: 22px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}

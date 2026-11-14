@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кружок Юный программист</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#top">Юный программист</a>
+      <input class="hide-input menu-check" type="checkbox" id="menu-check">
+      <label class="burger" for="menu-check">
+        <span class="burger-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        Меню
+      </label>
+      <nav class="nav">
+        <a href="#top">Главная</a>
+        <a href="#plan">Занятия</a>
+        <a href="#faq">Вопросы</a>
+        <a href="#join">Запись</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <div class="wrap intro-row">
+        <div>
+          <h1>Кружок Юный программист</h1>
+          <p>После уроков мы собираемся в кабинете 204 и делаем страницы, которые хочется открыть ещё раз. Кто-то только учится ставить заголовок, кто-то уже собирает целое меню.</p>
+          <p>Занятия по вторникам и четвергам, в 15:20. На первое можно прийти и просто посмотреть. Если решишь остаться, место у компьютера лучше занять заранее.</p>
+        </div>
+        <aside class="when">
+          <div class="clock" aria-hidden="true">
+            <span class="hand"></span>
+            <span class="pin"></span>
+          </div>
+          <p class="when-time">15:20</p>
+          <p>кабинет 204</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="plan">
+      <div class="wrap sheet">
+        <h2>Чем занимаемся</h2>
+        <ol class="topics">
+          <li>Собираем страницу по частям: шапка, текст, подвал. Чтобы все стояло на своих местах, а не в одной куче.</li>
+          <li>Добавляем цвет, отступы и движение. После этого сайт уже не похож на файл из блокнота.</li>
+          <li>В конце у каждого своя страница. Тема любая: хобби, игра, любимое животное.</li>
+        </ol>
+
+        <h2>Расписание</h2>
+        <div class="tabs">
+          <input class="hide-input" type="radio" name="day" id="day-tue" checked>
+          <input class="hide-input" type="radio" name="day" id="day-thu">
+          <div class="tabs-btns">
+            <label for="day-tue">Вторник</label>
+            <label for="day-thu">Четверг</label>
+          </div>
+          <div class="panel" id="panel-tue">
+            <p>Спокойно разбираем страницу и собираем первую. Если застрянешь, рядом всегда есть кому помочь.</p>
+          </div>
+          <div class="panel" id="panel-thu">
+            <p>Красим, двигаем блоки и делаем меню, которое открывается по нажатию.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap sheet">
+        <h2>Вопросы</h2>
+        <details>
+          <summary>Кому можно прийти <span class="arrow"></span></summary>
+          <p>Обычно это 7-9 классы. Если ты из другого, все равно заходи: место почти всегда находится.</p>
+        </details>
+        <details>
+          <summary>Что брать с собой <span class="arrow"></span></summary>
+          <p>Ничего особенного. Компьютеры в кабинете есть. Тетрадь пригодится, если любишь записывать.</p>
+        </details>
+        <details>
+          <summary>Сколько идет занятие <span class="arrow"></span></summary>
+          <p>Около часа после шестого урока. Иногда задерживаемся, когда страница почти готова и жалко бросать.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="wrap sheet">
+        <h2>Запись</h2>
+        <p>Оставь имя и класс, и мы поставим тебе место. Первое занятие ни к чему не обязывает.</p>
+        <input class="hide-input join-check" type="checkbox" id="join-check">
+        <label class="btn" for="join-check">Записаться</label>
+        <form class="form" action="#" method="post">
+          <label>
+            Имя
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            Класс
+            <input type="text" name="grade" required>
+          </label>
+          <button type="submit">Отправить</button>
+          <p class="form-ok" hidden>Записали. Ждем во вторник в 15:20, кабинет 204.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Школа 12, кабинет 204</p>
+    </div>
+  </footer>
+
+  <script>
+    var form = document.querySelector(".form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      document.querySelector(".form-ok").hidden = false;
+    });
+
+    var links = document.querySelectorAll(".nav a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function () {
+        document.getElementById("menu-check").checked = false;
+      });
+    }
+  </script>
+</body>
+</html>

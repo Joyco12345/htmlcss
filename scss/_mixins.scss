@@ -1,0 +1,13 @@
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+@function sp-width($n: 4) {
+  @if $n < 1 {
+    @return 220px;
+  } @else {
+    @return $n * 220px;
+  }
+}
